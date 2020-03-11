@@ -10,6 +10,6 @@ resilience4j.circuitbreaker:
         failureRateThreshold: 50
         eventConsumerBufferSize: 10
   instances:
-    backendA:
+    FailureService:
       baseConfig: default
       waitDurationInOpenState: 5000

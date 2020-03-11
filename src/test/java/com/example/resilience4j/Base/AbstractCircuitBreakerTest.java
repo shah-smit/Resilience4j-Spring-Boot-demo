@@ -1,4 +1,4 @@
-package com.example.resilience4j;
+package com.example.resilience4j.Base;
 
 import io.github.resilience4j.circuitbreaker.CircuitBreaker;
 import io.github.resilience4j.circuitbreaker.CircuitBreakerRegistry;
@@ -9,16 +9,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class AbstractCircuitBreakerTest {
 
-    protected static final String BACKEND_A = "backendA";
-    protected static final String BACKEND_B = "backendB";
+    protected static final String CB_INSTANCE_FailureService = "FailureService";
 
     @Autowired
     public CircuitBreakerRegistry registry;
 
     @Before
     public void setup(){
-        transitionToClosedState(BACKEND_A);
-        transitionToClosedState(BACKEND_B);
+        transitionToClosedState(CB_INSTANCE_FailureService);
     }
 
     protected void checkHealthStatus(String circuitBreakerName, CircuitBreaker.State state) {

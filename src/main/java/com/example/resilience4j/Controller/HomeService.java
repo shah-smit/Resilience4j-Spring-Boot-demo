@@ -8,18 +8,20 @@ import org.springframework.stereotype.Service;
 @Service
 public class HomeService{
 
+    private static final String FAILURE_SERVICE = "FailureService";
+
     @Autowired
     private FailureService failureService;
 
     @Autowired
     private CircuitBreakerRegistry registry;
 
-    @CircuitBreaker(name = "backendA", fallbackMethod = "fallback")
+    @CircuitBreaker(name = FAILURE_SERVICE, fallbackMethod = "fallback")
     public String getGreeting(){
         return failureService.getGreeting();
     }
 
     public String fallback(Exception e){
-        return registry.circuitBreaker("backendA").getState().name();
+        return registry.circuitBreaker(FAILURE_SERVICE).getState().name();
     }
 }
