@@ -31,6 +31,13 @@ public class AbstractCircuitBreakerTest {
         }
     }
 
+    protected void transitionToHalf_OpenState(String circuitBreakerName) {
+        CircuitBreaker circuitBreaker = registry.circuitBreaker(circuitBreakerName);
+        if(!circuitBreaker.getState().equals(CircuitBreaker.State.HALF_OPEN)){
+            circuitBreaker.transitionToHalfOpenState();
+        }
+    }
+
     protected void transitionToClosedState(String circuitBreakerName) {
         CircuitBreaker circuitBreaker = registry.circuitBreaker(circuitBreakerName);
         if(!circuitBreaker.getState().equals(CircuitBreaker.State.CLOSED)){
