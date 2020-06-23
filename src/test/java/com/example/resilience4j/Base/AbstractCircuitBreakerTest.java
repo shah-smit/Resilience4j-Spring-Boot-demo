@@ -2,7 +2,7 @@ package com.example.resilience4j.Base;
 
 import io.github.resilience4j.circuitbreaker.CircuitBreaker;
 import io.github.resilience4j.circuitbreaker.CircuitBreakerRegistry;
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -14,7 +14,7 @@ public class AbstractCircuitBreakerTest {
     @Autowired
     public CircuitBreakerRegistry registry;
 
-    @Before
+    @BeforeEach
     public void setup(){
         transitionToClosedState(CB_INSTANCE_FailureService);
     }
